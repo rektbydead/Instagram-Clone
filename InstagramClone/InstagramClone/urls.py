@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from register import views as view
 
 urlpatterns = [
     path('admin/', admin.site.urls), # to be removed
+    path('accounts/emailsignup/', view.register, 'register'),
     path('', include('main.urls')),
 ]
