@@ -14,11 +14,7 @@
 
         <!-- django code to only print the first error message... will probably have to change later! -->
         {% if form.is_valid == False %}
-            {% for error in form.errors.values %}
-                {% if forloop.first %}
-                    {{ error.0 }}
-                {% endif %}
-          {% endfor %}
+          {{form.first_error}}
         {% endif %}
 
     </form>
