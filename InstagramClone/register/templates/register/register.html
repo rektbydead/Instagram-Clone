@@ -1,11 +1,25 @@
+{% extends 'register_base.html' %}
+
 {% block title%} Instagram - Register your Instagram account {% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block content %} 
-    <form method="post">
+    <form method="post" class="form-group">
         {% csrf_token %}
 
         {{form|crispy}}
 
-        <button type="submit">Register</button>
+        <button type="submit" class="btn btn-success">Register</button>
+
+        <!-- django code to only print the first error message... will probably have to change later! -->
+        {% if form.is_valid == False %}
+            {% for error in form.errors.values %}
+                {% if forloop.first %}
+                    {{ error.0 }}
+                {% endif %}
+          {% endfor %}
+        {% endif %}
+
     </form>
 {% endblock %}

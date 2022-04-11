@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'main.apps.MainConfig',
     'register.apps.RegisterConfig',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +69,9 @@ TEMPLATES = [
         },
     },
 ]
+
+
+AUTH_USER_MODEL = 'register.Account'
 
 WSGI_APPLICATION = 'InstagramClone.wsgi.application'
 

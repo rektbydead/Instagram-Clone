@@ -18,7 +18,7 @@ from django.urls import path, include
 from register import views as view
 
 urlpatterns = [
-    path('admin/', admin.site.urls), # to be removed
-    path('accounts/emailsignup/', view.register, 'register'),
-    path('', include('main.urls')),
+    path('admin/', admin.site.urls, name='register'), # to be removed
+    path('accounts/emailsignup/', view.register, name='register'),
+   # path('', include('main.urls'), name="main_urls"),
 ]
