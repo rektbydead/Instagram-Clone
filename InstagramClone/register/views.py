@@ -14,8 +14,6 @@ def register(response):
             pass # TODO: Render main instagram page
         else:
             form.first_error = list(form.errors.items())[0][1]
-
-            print(form.first_error)
     else:
         form = RegisterForm()
 

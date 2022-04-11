@@ -13,19 +13,20 @@ class RegisterForm(forms.ModelForm):
                 'autofocus': True
             },
         ),
+        error_messages = None,
         required = True,
     )
 
-    name = forms.CharField(
-        max_length = 16, 
+    profile_name = forms.CharField(
+        max_length = 32, 
         label = "", 
-        widget = forms.TextInput(attrs = {'placeholder': 'Name'}),
+        widget = forms.TextInput(attrs = {'placeholder': 'Profile Name'}),
         required = True,
         strip = True,
     )
 
     username = forms.CharField( #Add regex to block space, not letter, underline(_) or periods (.)
-        max_length = 32, 
+        max_length = 16, 
         label = "",
         widget = forms.TextInput(attrs = {'placeholder': 'Username'}),
         required = True,
@@ -39,10 +40,6 @@ class RegisterForm(forms.ModelForm):
         widget = forms.PasswordInput(attrs={'autocomplete': 'new-password', 'placeholder': 'Password'}),
         required = True,
     )
-
-    class Meta:
-        model = Account
-        fields = ["name", "username", "password"]
 
     def _post_clean(self):
         super()._post_clean()
@@ -61,5 +58,10 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+    class Meta:
+        model = Account
+        fields = ["email", "username", "profile_name", "password"]
 
 
