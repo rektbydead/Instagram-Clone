@@ -13,7 +13,7 @@
         <button type="submit" class="btn btn-success">Register</button>
 
         <!-- django code to only print the first error message... will probably have to change later! -->
-        {% if form.is_valid == False %}
+        {% if form.first_error %}
           {{form.first_error}}
         {% endif %}
 

@@ -23,7 +23,10 @@ class AccountManager(BaseUserManager):
             profile_name = profile_name,
         )
 
-        user.password = password #make_password(password)
+        #password2 = make_password(password)
+
+        #print(password + " -> " + password2)
+        user.set_password(password) #make_password(password)
         user.save(using=self._db)
 
         return user
@@ -45,31 +48,31 @@ class AccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser, PermissionsMixin):
     #User Fields
-    email = models.EmailField(_('email'), unique=True, max_length=254, blank = False,
-        error_messages = {
+    email = models.EmailField(unique=True, max_length=254, blank=False,
+        error_messages={
             'unique': _("An account with that email already exists."),
         }
     )
-    username = models.CharField(_('username'), unique=True, max_length=16, blank = False, 
-        error_messages = {
+    username = models.CharField(unique=True, max_length=32, blank=False, 
+        error_messages={
             'unique': _("A user with that username already exists."),
         },
-        validators = [UsernameValidator],
+        validators=[UsernameValidator],
     )
-    profile_name = models.CharField(_('profile_name'), max_length=32, blank=False,)
-    description = models.CharField(_('description'), max_length=120, blank=True,)
-    date_of_birth = models.DateTimeField(_('date_of_birth'), null=True, blank=True)
-    photo = models.ImageField(_('photo'))
+    profile_name = models.CharField(max_length=32, blank=False)
+    description = models.CharField(max_length=120, blank=True)
+    date_of_birth = models.DateTimeField(null=True, blank=True)
+    photo = models.ImageField(  )
 
-    #Mandatory Fields<
-    is_admin = models.BooleanField(default = False)
-    is_superuser = models.BooleanField(default = False)
-    is_active = models.BooleanField(default = True)
-    is_staff = models.BooleanField(default = False)
+    #Mandatory Fields
+    is_admin = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
     #Fields used to login
-    USERNAME_FIELD = "username"
-    EMAIL_FIELD = "email"
+    USERNAME_FIELD = 'username'
+    #EMAIL_FIELD = 'email'
 
     #Required fields
     REQUIRED_FIELD = ['email', 'profile_name']
@@ -85,6 +88,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
             'profile_name': self.profile_name,
             'description': self.description,
             'date_of_birth': self.date_of_birth,
+            'password': self.password,
         })
 
     #Users permission (doesn't matter but it's mandatory)
