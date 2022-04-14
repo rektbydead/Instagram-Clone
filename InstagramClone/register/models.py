@@ -62,7 +62,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     profile_name = models.CharField(max_length=32, blank=False)
     description = models.CharField(max_length=120, blank=True)
     date_of_birth = models.DateTimeField(null=True, blank=True)
-    photo = models.ImageField(  )
+    photo = models.ImageField(upload_to='./profile_photos/', default='default_profile_photo.jpg')
 
     #Mandatory Fields
     is_admin = models.BooleanField(default=False)
