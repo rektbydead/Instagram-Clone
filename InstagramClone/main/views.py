@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from register.models import Account
 
 # Create your views here.
 def default(response):
-    pass
+    if response.user.is_authenticated == False:
+        return redirect('accounts/login/')
+
+    return render(response, 'main/home.html')
 
 def inbox(response):
     pass
