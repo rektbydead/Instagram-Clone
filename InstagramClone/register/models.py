@@ -91,6 +91,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
             'description': self.description,
             'date_of_birth': self.date_of_birth,
             'password': self.password,
+            #'photo': self.photo, # not json serializable
         })
 
     #Users permission (doesn't matter but it's mandatory)
