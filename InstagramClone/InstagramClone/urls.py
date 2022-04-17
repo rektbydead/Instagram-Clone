@@ -18,8 +18,8 @@ from django.urls import path, include
 from register import views as view
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='register'), # to be removed
+    #path('admin/', admin.site.urls, name='register'), # to be removed
     path('accounts/emailsignup/', view.register, name='register'),
     path('accounts/login/', view.login, name='login'),
-   # path('', include('main.urls'), name="main_urls"),
+    path('', include('main.urls'), name="main_urls"),
 ]
