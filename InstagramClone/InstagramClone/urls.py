@@ -21,5 +21,6 @@ urlpatterns = [
     #path('admin/', admin.site.urls, name='register'), # to be removed
     path('accounts/emailsignup/', view.register, name='register'),
     path('accounts/login/', view.login, name='login'),
+    path('logout/', view.logout, name='logout'),
     path('', include('main.urls'), name="main_urls"),
 ]
