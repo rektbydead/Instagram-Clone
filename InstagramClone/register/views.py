@@ -4,11 +4,12 @@ from .models import Account
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth import logout as auth_logout
 
 # Create your views here.
 def register(response):
     if response.user.is_authenticated == True:
-        pass # TODO: Render main instagram page
+        return redirect("../../") # TODO: render main page -> Change this
 
     if response.method == 'POST':
         form = RegisterForm(response.POST)
@@ -17,7 +18,7 @@ def register(response):
             user = form.save(commit=False)
             user.set_password(response.POST['password'])
             user.save()
-            pass # TODO: Render main instagram page
+            return redirect("../../") # TODO: render main page -> Change this
         
         if len(form.errors.items()) > 0:
             form.first_error = list(form.errors.items())[0][1]
@@ -29,7 +30,7 @@ def register(response):
 
 def login(response):
     if response.user.is_authenticated == True:
-        return redirect("https://google.com/") # TODO: Render main instagram page
+        return redirect("../../") # TODO: render main page -> Change this
 
     if response.method == 'POST':
         form = LoginForm(response.POST)
@@ -51,12 +52,12 @@ def login(response):
 
             auth_login(response, user)
 
-            return redirect("https://google.com/")
-            ##pass # TODO: Render main instagram page
+            return redirect("../../") # TODO: render main page -> Change this
     else:
         form = LoginForm()
 
     return render(response, 'register/login.html', {"form": form})
 
-#def logout(response):
-#    LogoutView()
+def logout(response):
+    auth_logout(response)
+    return redirect('accounts/login/')
