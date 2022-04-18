@@ -3,22 +3,31 @@
 {% block style %}
     <style>
         .centerHorizontal {
-            position: relative;
             width: 55%;
             margin: 0 auto;
             margin-top: 2%;
-            min-height: 92%;
-            height: 92%;
+            min-height: 100%;
+            height: 100%;
         }
 
         .box {
             position: relative;
-            width: 100%;
+            width: 70%;
             height: 100%;
-            border: 1px solid black;
-            margin-top: 5%;
+            float:left;
+            padding-right: 4%;
         }
 
+        .subbox {
+            position: -webkit-sticky;
+            position: sticky;
+            width: 30%;
+            height: 30%;
+            float: right;
+            background-color: blue;
+            right:0;
+            top:0;
+        }
 
         .stories {
             position: relative;
@@ -32,30 +41,15 @@
 
         .posts {
             position: relative;
-            /*border: 1px solid purple;*/
-        }
-
-
-        .left {
-            position: relative;
-            width: 70%;
-            height: 100%;
-            float: left;
-            border-right: 1px solid black;
-        }
-
-        .right {
-            position: fixed;
-            width: 30%;
-            height: 100%;
-            float: right;
+            border: 1px solid red;
+            margin-top: 5%;
         }
 
         .test {
             position: relative;
             width: 100%;
             height: 300px;
-            /*border: 1px solid purple;*/
+            border: 1px solid purple;
         }
 
     </style>
@@ -63,23 +57,23 @@
 
 {% block content %}
     <div class="centerHorizontal">
-        <div class="box">          
-            <div class="left">   
-                <div class="stories">
-                    {% block content_stories %}
-                    {% endblock %}
-
-                    <div class="test"></div><div class="test"></div>
-                    <div class="test"></div><div class="test"></div>
-                </div>
-
-                <div class="posts">
-                    {% block content_posts %}
-                    {% endblock %}
-                </div>
+        <div class="box">           
+            <div class="stories">
+                {% block content_stories %}
+                {% endblock %}
             </div>
-    
-            <div class="right"> </div>
+
+            <div class="posts">
+                {% block content_posts %}
+                {% endblock %}
+
+                <div class="test"></div><div class="test"></div><div class="test"></div><div class="test"></div>
+                <div class="test"></div><div class="test"></div><div class="test"></div><div class="test"></div>
+            </div>
+        </div>
+
+        <div class="subbox"> 
+
         </div>
     </div>
 {% endblock %}
